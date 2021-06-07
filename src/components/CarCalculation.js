@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Vehicles} from "./vehicles"
 
 
 const CarCalculation = () => {
@@ -14,10 +15,19 @@ const CarCalculation = () => {
        
     }
 
+
     return (
         <div>
             <h1>Calculate the social cost of carbon created by your vehicle.</h1>
             <form>
+                {Vehicles.map((val, key) => {
+                    return (
+                        <li key={key}>
+                            <button id={val.type} onClick={(e) => {e.preventDefault(); setMpg(val.mpg)}}>{val.icon}</button>
+                            <label for={val.type}>{val.type}</label>
+                        </li>
+                    )
+                })}
                 <label for="mpg">MPG of your vehicle</label>
                 <input type="number" name="car_mpg" id="mpg" value={mpg} onChange={e => setMpg(e.target.value)}></input>
                 <label for="distance">Distance Traveled</label>
