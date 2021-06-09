@@ -23,7 +23,7 @@ const CarCalculation = () => {
                 {Vehicles.map((val, key) => {
                     return (
                         <li key={key}>
-                            <button id={val.type} onClick={(e) => {e.preventDefault(); setMpg(val.mpg)}}>{val.icon}</button>
+                            <button id={val.type} className="icon" onClick={(e) => {e.preventDefault(); setMpg(val.mpg)}}>{val.icon}</button>
                             <label for={val.type}>{val.type}</label>
                         </li>
                     )

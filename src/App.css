@@ -51,12 +51,18 @@
   width: 5vw;
 }
 
+.icon {
+  width: 12vw;
+  height: 12vh;
+}
+
 .map_div {
   width: 50vw;
   height: 20vh;
   justify-content: center;
   display:inline;
   align-items: center;
+  position: relative;
 }
 
 @keyframes App-logo-spin {
