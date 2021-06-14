@@ -13,7 +13,6 @@ const FlightCalculation = () => {
         <div>
             <h3>Calculate the carbon emmisions of domestic flights in the US</h3>
             <GoogleMaps />
-            <h3>Total flight emissions</h3>
         </div>
     )
 }

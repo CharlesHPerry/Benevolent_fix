@@ -5,6 +5,7 @@ import Profile from './components/Profile';
 import {useAuth0} from '@auth0/auth0-react';
 import CarCalculation from './components/CarCalculation';
 import FlightCalculation from './components/FlightCalculation';
+import Donation from './components/Donation'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <CarCalculation />
         <FlightCalculation />
         <Profile />
+        <Donation />
       </div>
     </>
   );

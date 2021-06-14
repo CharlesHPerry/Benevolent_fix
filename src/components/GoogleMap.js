@@ -9,17 +9,19 @@ import Axios from 'axios';
 
 
 const style = {
-  width: "600px",
-  height: "600px",
+  width: "90%",
+  height: "60vh",
   overflowX: "hidden",
   overflowY: "hidden",
-  position: "relative"
+  position: "relative",
+  display: "flex"
  };
  const containerStyle = {
-  maxWidth: "8000px",
-  width: "600px",
-  height: "600px",
-  position: "relative"
+  maxWidth: "100%",
+  width: "50vw",
+  height: "75vh",
+  position: "relative",
+  display: "inline-flex"
  };
 
 
@@ -166,123 +168,139 @@ export class MapContainer extends Component {
    
     render() {
       return (
-        <div id="flight_container" >
+        <div>
 
-          <div id="flight_form">
+          <div id="flight_container" className="flight_container" >
 
-              <PlacesAutocomplete
-                value={this.state.origin_address}
-                onChange={this.handleOriginChange}
-                onSelect={this.handleOriginSelect}
-                id={"origin_input"}
-              >
-              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                <div>
-                  <input
-                    {...getInputProps({
-                      placeholder: 'Enter Flight Origin',
-                      className: 'location-search-input',
-                    })}
-                  required />
-                  <div className="autocomplete-dropdown-container">
-                    {loading && <div>Loading...</div>}
-                    {suggestions.map(suggestion => {
-                      const className = suggestion.active
-                        ? 'suggestion-item--active'
-                        : 'suggestion-item';
-                      // inline style for demonstration purpose
-                      const style = suggestion.active
-                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                      return (
-                        <div
-                          {...getSuggestionItemProps(suggestion, {
-                            className,
-                            style,
-                          })}
-                        >
-                          <span>{suggestion.description}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </PlacesAutocomplete>
-            <PlacesAutocomplete
-                value={this.state.destination_address}
-                onChange={this.handleDestinationChange}
-                onSelect={this.handleDestinationSelect}
-                id={"destination_input"}
-              >
-              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                <div>
-                  <input
-                    {...getInputProps({
-                      placeholder: 'Enter Destination',
-                      className: 'location-search-input',
-                    })}
-                    required
-                  />
-                  <div className="autocomplete-dropdown-container">
-                    {loading && <div>Loading...</div>}
-                    {suggestions.map(suggestion => {
-                      const className = suggestion.active
-                        ? 'suggestion-item--active'
-                        : 'suggestion-item';
-                      // inline style for demonstration purpose
-                      const style = suggestion.active
-                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                      return (
-                        <div
-                          {...getSuggestionItemProps(suggestion, {
-                            className,
-                            style,
-                          })}
-                        >
-                          <span>{suggestion.description}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </PlacesAutocomplete>
-            <div>
-              <p className="form-label">Was this a round trip?</p>
-              <label for="Yes">Yes</label>
-              <input type="radio" value="2" name="round_trip" onClick={(event) => {this.handleTripChange(event); console.log(this.state.round_trip)}} />
-              <label for="No">No</label>
-              <input type="radio" value="1" name="round_trip" onClick={() => this.setState({round_trip: false})} />
-            </div>
-            <div>
-              <p className="form-label">Number of people in your group:</p>
-              <input type="text" pattern="[0-9]*" id="passenger_input" placeholder="1" value={this.state.passengers} onChange={(event) => this.handlePassengerChange(event)}/>
-            </div>
-            <button type="button" onClick={(e) => this.calculateDistance(e)}>Calculate Flight Emissions</button>
-          </div>
-          <div id="google_map" className="map_div">
-            
-            <Map google={this.props.google}
-                style={style}
-                containerStyle={containerStyle}
-                initialCenter={{
-                  lat: this.state.mapCenter.lat,
-                  lng: this.state.mapCenter.lng
-                }}
-                center={{
-                  lat: this.state.mapCenter.lat,
-                  lng: this.state.mapCenter.lng
-                }}
+            <div id="flight_form" className="flight_form">
+
+                <PlacesAutocomplete
+                  value={this.state.origin_address}
+                  onChange={this.handleOriginChange}
+                  onSelect={this.handleOriginSelect}
+                  id={"origin_input"}
                 >
-              <Marker position={{
-                lat: this.state.mapCenter.lat,
-                lng: this.state.mapCenter.lng
-              }} />
-            </Map>
-            <h1>Total flight distance in miles: {this.state.flight_distance * 0.621371}</h1>
-            <h3>Cost to offset emissions from this flight: {this.state.flight_cost.toFixed(2)}$</h3>
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                  <div>
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Enter Flight Origin',
+                        className: 'location-search-input',
+                      })}
+                    required />
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style,
+                            })}
+                          >
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+              <PlacesAutocomplete
+                  value={this.state.destination_address}
+                  onChange={this.handleDestinationChange}
+                  onSelect={this.handleDestinationSelect}
+                  id={"destination_input"}
+                >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                  <div>
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Enter Destination',
+                        className: 'location-search-input',
+                      })}
+                      required
+                    />
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style,
+                            })}
+                          >
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+              <div className="small_form">
+                <div className="radio_form">
+                  <p className="form-label">Was this a round trip?</p>
+                  <div className="yes_input">
+                    <label for="Yes">Yes</label>
+                    <input type="radio" value="2" name="round_trip" onClick={(event) => {this.handleTripChange(event); console.log(this.state.round_trip)}} />
+                  </div>
+                  <div className="yes_input">
+                    <label for="No">No</label>
+                    <input type="radio" value="1" name="round_trip" onClick={() => this.setState({round_trip: false})} />
+                  </div>
+                </div>
+                <div className="number_form">
+                  <p className="form-label">Number of people in your group:</p>
+                  <input type="text" pattern="[0-9]*" id="passenger_input" placeholder="1" value={this.state.passengers} onChange={(event) => this.handlePassengerChange(event)}/>
+                </div>
+              </div>
+            </div>
+            <div id="google_map" className="map_div">
+              
+              <Map google={this.props.google}
+                  className="map_style"
+                  style={style}
+                  containerStyle={containerStyle}
+                  //containerStyle={containerStyle}
+                  initialCenter={{
+                    lat: this.state.mapCenter.lat,
+                    lng: this.state.mapCenter.lng
+                  }}
+                  center={{
+                    lat: this.state.mapCenter.lat,
+                    lng: this.state.mapCenter.lng
+                  }}
+                  >
+                <Marker position={{
+                  lat: this.state.mapCenter.lat,
+                  lng: this.state.mapCenter.lng
+                }} />
+              </Map>
+            </div>
+          </div>
+              <div className="button_form">
+                <button type="button" onClick={(e) => this.calculateDistance(e)}>Calculate Flight Emissions</button>
+              </div>
+          <div>
+              <h1>Total flight distance in miles: {this.state.flight_distance * 0.621371}</h1>
+              <h3>Cost to offset emissions from this flight: {this.state.flight_cost.toFixed(2)}$</h3>
+
           </div>
         </div>
       )
