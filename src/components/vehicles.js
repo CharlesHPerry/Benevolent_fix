@@ -7,8 +7,8 @@ import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 const styles = {
 
     largeIcon: {
-      width: 60,
-      height: 60,
+      width: 90,
+      height: 90,
     },
   
   };

@@ -15,15 +15,16 @@ const style = {
   overflowY: "hidden",
   position: "relative",
   display: "flex"
- };
- const containerStyle = {
+};
+const containerStyle = {
   maxWidth: "100%",
   width: "50vw",
   height: "75vh",
   position: "relative",
   display: "inline-flex"
- };
+};
 
+const API_KEY = process.env.REACT_APP_API_KEY
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -165,6 +166,7 @@ export class MapContainer extends Component {
       this.setState({ mapCenter: latLng });
       this.setState({ destination_cords: latLng })
     };
+
    
     render() {
       return (
@@ -196,8 +198,8 @@ export class MapContainer extends Component {
                           : 'suggestion-item';
                         // inline style for demonstration purpose
                         const style = suggestion.active
-                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                          ? { backgroundColor: '#fafafa15', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff00', cursor: 'pointer' };
                         return (
                           <div
                             {...getSuggestionItemProps(suggestion, {
@@ -236,8 +238,8 @@ export class MapContainer extends Component {
                           : 'suggestion-item';
                         // inline style for demonstration purpose
                         const style = suggestion.active
-                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                          ? { backgroundColor: '#fafafa15', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff00', cursor: 'pointer' };
                         return (
                           <div
                             {...getSuggestionItemProps(suggestion, {
@@ -262,7 +264,7 @@ export class MapContainer extends Component {
                   </div>
                   <div className="yes_input">
                     <label for="No">No</label>
-                    <input type="radio" value="1" name="round_trip" onClick={() => this.setState({round_trip: false})} />
+                    <input type="radio" value="1" name="round_trip" onClick={(event) => this.handleTripChange(event)} />
                   </div>
                 </div>
                 <div className="number_form">
@@ -294,12 +296,12 @@ export class MapContainer extends Component {
               </Map>
             </div>
           </div>
-              <div className="button_form">
-                <button type="button" onClick={(e) => this.calculateDistance(e)}>Calculate Flight Emissions</button>
-              </div>
-          <div>
-              <h1>Total flight distance in miles: {this.state.flight_distance * 0.621371}</h1>
-              <h3>Cost to offset emissions from this flight: {this.state.flight_cost.toFixed(2)}$</h3>
+          <div className="button_form">
+            <button type="button" className="calc_button" onClick={(e) => this.calculateDistance(e)}>Calculate Flight Emissions</button>
+          </div>
+          <div className="calc-results">
+              <p>Total flight distance in miles: {(this.state.flight_distance * 0.621371).toFixed(2)}</p>
+              <p>Cost to offset emissions from this flight: ${this.state.flight_cost.toFixed(2)}</p>
 
           </div>
         </div>
@@ -308,5 +310,5 @@ export class MapContainer extends Component {
   }
 
 export default GoogleApiWrapper({
-    apiKey: ('AIzaSyAeEJojAR4Ffjcq2vt0lVA7bZ8sEFZVbAo')
+    apiKey: (API_KEY)
 })(MapContainer)

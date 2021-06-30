@@ -17,14 +17,15 @@ const CarCalculation = () => {
 
 
     return (
-        <div>
-            <h1>Calculate the social cost of carbon created by your vehicle.</h1>
+        <div className="car_calc">
+            <h1>Vehicle emissions calculator</h1>
             <form>
                 <div className="small_forms">
                     {Vehicles.map((val, key) => {
                         return (
                             <li key={key} className="button_groups">
-                                <button id={val.type} className="icon" onClick={(e) => {e.preventDefault(); setMpg(val.mpg)}}>{val.icon}{val.type}</button>
+                                <div id={val.type} className="largeIcon" onClick={(e) => {e.preventDefault(); setMpg(val.mpg)}}>{val.icon}</div>
+                                <div>{val.type}</div>
                             </li>
                         )
                     })}
@@ -32,7 +33,7 @@ const CarCalculation = () => {
                 <div className="small_forms">
                     <div className="number_forms">
                         <label for="mpg">MPG of your vehicle</label>
-                        <input type="number" name="car_mpg" id="mpg" value={mpg} onChange={e => setMpg(e.target.value)}></input>
+                        <input type="number" name="car_mpg" id="mpg" onChange={e => setMpg(e.target.value)}></input>
                     </div>
                     <div className="number_forms">
                         <label for="distance">Distance Traveled</label>

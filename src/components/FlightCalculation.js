@@ -10,8 +10,8 @@ const FlightCalculation = () => {
     }
 
     return (
-        <div>
-            <h3>Calculate the carbon emmisions of domestic flights in the US</h3>
+        <div className="calculation_div">
+            <h1 className="calc-title">Flight emission calculator</h1>
             <GoogleMaps />
         </div>
     )
