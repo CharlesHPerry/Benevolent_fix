@@ -33,7 +33,7 @@ const CarCalculation = () => {
                 <div className="small_forms">
                     <div className="number_forms">
                         <label for="mpg">MPG of your vehicle</label>
-                        <input type="number" name="car_mpg" id="mpg" onChange={e => setMpg(e.target.value)}></input>
+                        <input type="number" name="car_mpg" id="mpg" value={mpg} onChange={e => setMpg(e.target.value)}></input>
                     </div>
                     <div className="number_forms">
                         <label for="distance">Distance Traveled</label>
