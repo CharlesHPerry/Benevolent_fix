@@ -6,7 +6,6 @@ import Profile from './components/Profile';
 import {useAuth0} from '@auth0/auth0-react';
 import CarCalculation from './components/CarCalculation';
 import FlightCalculation from './components/FlightCalculation';
-import PayPal from './components/PayPal'
 import Hero from './components/Hero'
 import AllProjects from './components/allProjects'
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
@@ -18,8 +17,8 @@ function App() {
   const styles = {
 
     largeIcon: {
-      width: 90,
-      height: 90,
+      width: 140,
+      height: 140,
     },
 
     hoverIcon: {
@@ -53,16 +52,18 @@ function App() {
       <div className="App">
         <Hero />
         <div className="calculation_select">
-          <h1 className="section_title">Calculate offset costs for your flights and / or vehicle usage</h1>
-          <p className="section_title">Click the Icon for the calculation you'd like to make</p>
+          <h1 className="section_title">Calculate the cost for your actions</h1>
           <div className="calculators">
             <div className="calculator">
               <AirplanemodeActiveIcon onClick={() => setCalc("first")} style={mystyle} onHover={() => setMyStyle(styles.hoverIcon)} />
+              <p>Flight Calculation</p>
             </div>
             <div className="calculator">
               <DriveEtaIcon onClick={() => setCalc("second")} style={mystyle} onHover={() => setMyStyle(styles.hoverIcon)} />
+              <p>Vehicle Calculation</p>
             </div>
           </div>
+           <p className="section_title">( Click the Icon for the calculation you'd like to make )</p>
         </div>
         <RenderInner />
         <AllProjects />

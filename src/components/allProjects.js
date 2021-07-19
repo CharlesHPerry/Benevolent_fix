@@ -28,31 +28,29 @@ const AllProjects = () => {
             return (
                 <div className="full_proj">
                     <div className="project_info">
-                        <h1 className="calc-title">{title}</h1>
-                        <p className="calc-result">{description}</p>
-                        <a href={link} target="_blank" className="calc-results">Learn More</a>
+                        <h1 className="section_titles">{title}</h1>
+                        <p className="general_text">{description}</p>
                     </div>
                     <div className="project_image">
-                        <img src={image} alt={title} className="big_img"/>
+                        <img src={image} alt={title} className="offset_img"/>
                     </div>
                 </div>
             )
         } else  {
             return (
-                <div>No Project Selected</div>
+                <div style={{color: "white"}}>( No Project Selected )</div>
             )
         }
     }
 
     return (
-        <>
-            <div>
-                <h1>Offset Projects</h1>
-                <p>Below are emissions offset projects we believe in, click a project to learn more,</p>
-                <p>additionaly you can create a custom donation ammount for any project and reviece conformation of your contributions</p>
-            </div>
-            <div>
-                <img src='./carbon_offset.png' alt="Direct vs indirect offset project description" />
+        <>  
+            <div className="offset_projects">
+                <h1 className="section_titles">Offset Projects</h1>
+                <p className="offset_text">
+                    Here are a selection of projects we believe are helping to mitigate the damaging costs of our emission producing action. Click on a project to learn more about its mission.
+                    Additionally you can create a custom donation amount for any project and receive a confirmation of your contributions.
+                </p>
             </div>
             <div className="project_section">
 
@@ -78,9 +76,9 @@ const AllProjects = () => {
             {checkout ? (
                 <PayPal price={priceProp} title={title}/>
                     ) : (
-                        <div>
-                            <h2>If you would like to donate to {title} please enter your desired donation amount here</h2>                                    <input type="text" pattern="[0-9]*" id="donation_input" placeholder="1" value={price} onChange={(e) => setPrice(e.target.value)}/>
-                                <button
+                        <div className="donation_div">
+                            <h2>If you would like to make a donation please enter the amount here:</h2>                                    <input type="text" pattern="[0-9]*" id="donation_input" placeholder="1" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                                <button className="check_button"
                                     onClick={() => {
                                         setCheckOut(true);
                                         setPriceProp(price);

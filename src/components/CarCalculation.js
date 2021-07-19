@@ -31,19 +31,23 @@ const CarCalculation = () => {
                     })}
                 </div>
                 <div className="small_forms">
-                    <div className="number_forms">
-                        <label for="mpg">MPG of your vehicle</label>
-                        <input type="number" name="car_mpg" id="mpg" value={mpg} onChange={e => setMpg(e.target.value)}></input>
+                    <div className="radio_form">
+                    <p className="form_label">MPG of your vehicle</p>
+                        <input type="number"  name="car_mpg" id="mpg" value={mpg} onChange={e => setMpg(e.target.value)}></input>
                     </div>
-                    <div className="number_forms">
-                        <label for="distance">Distance Traveled</label>
+                    <div className="radio_form">
+                        <p className="form_label">Distance Traveled</p>
                         <input type="number" name="distance" id="distance" value={distance} onChange={e => setDistance(e.target.value)} ></input>
                     </div>
                 </div>
-                    <button type="submit" onClick={(e) => calculate(e)}>Calculate Cost</button>
+                <div className="button_forms">
+                    <button type="submit" className="calc_button" onClick={(e) => calculate(e)}>Calculate Vehicle Emissions</button>
+                </div>
             </form>
-            <h3>Total Offset Cost of your Vehicle Emissions: {cost.toFixed(2)}$</h3>
-            <h4>Total tons of emissions: {emissions.toFixed(2)}</h4>
+            <div className="calc-result">
+                <h3>Total Offset Cost of your Vehicle Emissions: ${cost.toFixed(2)}</h3>
+                <h4>Total emissions created from vehicle: {emissions.toFixed(2)}</h4>
+            </div>
         </div>
     )
 }
