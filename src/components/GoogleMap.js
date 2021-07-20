@@ -302,7 +302,7 @@ export class MapContainer extends Component {
           <div className="calc-results">
               <p>Total flight distance in miles: {(this.state.flight_distance * 0.621371).toFixed(2)}</p>
               <p>Cost to offset emissions from this flight: ${this.state.flight_cost.toFixed(2)}</p>
-              <p>Tonnes of carbon: {(this.state.flight_cost / 50).toFixed(2)}</p>
+              <p>Tons of carbon: {(this.state.flight_cost / 50).toFixed(2)}</p>
           </div>
         </div>
       )

@@ -56,7 +56,7 @@ const AllProjects = () => {
 
                 {Projects.map((val, key) => {
                     return (
-                        <div id={key} key={key}>
+                        <div id={key} key={key} className="thumbnail_div">
                             <img className="project_thumbnail" src={val.img} alt={val.title} onClick={() => {
                                 setTitle(val.title);
                                 setDescription(val.description);
@@ -64,6 +64,8 @@ const AllProjects = () => {
                                 setLink(val.link); 
                                 setImage(val.img)
                             }}/>
+                            <h1 className="thumbnail_txt">{val.title}</h1>
+                            <p className="sub_txt">Click and see below to learn more</p>
                         </div>
                     )
                     
@@ -76,17 +78,20 @@ const AllProjects = () => {
             {checkout ? (
                 <PayPal price={priceProp} title={title}/>
                     ) : (
-                        <div className="donation_div">
-                            <h2>If you would like to make a donation please enter the amount here:</h2>                                    <input type="text" pattern="[0-9]*" id="donation_input" placeholder="1" value={price} onChange={(e) => setPrice(e.target.value)}/>
-                                <button className="check_button"
-                                    onClick={() => {
-                                        setCheckOut(true);
-                                        setPriceProp(price);
-                                    }}
-                                    >
-                                    Checkout
-                                </button>
-                            </div>
+                        <>
+                            <h2 className="section_titles">Donate to the offset project</h2>                                    
+                            <div className="donation_div">
+                                <input type="text" pattern="[0-9]*" id="donation_input" placeholder="1" value={price} onChange={(e) => setPrice(e.target.value)}/>
+                                    <button className="check_button"
+                                        onClick={() => {
+                                            setCheckOut(true);
+                                            setPriceProp(price);
+                                        }}
+                                        >
+                                        Checkout
+                                    </button>
+                                </div>
+                            </>
                         )
                     }
             </div>

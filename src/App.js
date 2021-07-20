@@ -68,6 +68,9 @@ function App() {
         <RenderInner />
         <AllProjects />
       </div>
+      <footer className="footer">
+        <p>Benevolent LLC 2021</p>
+      </footer>
     </>
   );
 }
